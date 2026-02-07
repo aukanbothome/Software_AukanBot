@@ -1,4 +1,10 @@
-RoboCup Robot System
+# RoboCup Robot System
+
+### A modular robotic system developed for RoboCup competitions, focused on human–robot interaction, safe navigation, and real hardware control.
+
+---
+
+## Overview
 
 A modular robotic system developed for RoboCup competitions, focused on human–robot interaction, safe navigation, and real hardware control.
 
