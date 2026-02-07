@@ -1,9 +1,7 @@
 #In Englsih It definitely needs improvement to make it more enjoyable.
 
 Robot Decision Making System
-
-A Finite State Machine–based architecture for RoboCup challenges
-
+A Finite State Machine–based Architecture for RoboCup Challenges
 Overview
 
 This repository documents the Decision Making System used by the robot across multiple RoboCup-style challenges.
@@ -40,7 +38,7 @@ Mobility control
 
 Path planning
 
-Object detection & recognition
+Object detection and recognition
 
 Pose estimation
 
@@ -56,6 +54,7 @@ Face recognition
 
 Button-based interaction
 
+RoboCup Challenges
 Challenge 1: Help Me Carry
 Description
 
@@ -97,7 +96,7 @@ o → Obstacle detected
 
 q → Bag delivered
 
-🛠 Key Functions Used
+Key Functions Used
 
 Pose estimation
 
@@ -114,7 +113,7 @@ Description
 
 The robot waits for spoken instructions, executes commands, navigates to instruction points, and safely handles obstacles during execution.
 
-🔄 Behavior Summary
+Behavior Summary
 
 Idle waiting
 
@@ -126,7 +125,7 @@ Reports task completion
 
 Handles navigation obstacles
 
-🎯 Key Events
+Key Events
 
 b → Command given
 
@@ -286,14 +285,13 @@ Each state corresponds to a robot behavior
 
 Transitions are strictly event-driven
 
-Designed for robustness and real-world uncertainty
+Designed for robustness under real-world uncertainty
 
 Easily extendable to new challenges
 
 Conclusion
 
-This decision-making framework provides a clear, modular, and robust architecture for autonomous robots operating in dynamic environments, ensuring reliable behavior across multiple service-oriented challenges.
-
+This decision-making framework provides a clear, modular, and robust architecture for autonomous robots operating in dynamic environments, ensuring reliable behavior across multiple service-oriented RoboCup challenges.
 #En Español
 
 Robot Decision Making System
