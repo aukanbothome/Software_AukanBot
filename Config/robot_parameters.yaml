@@ -1,0 +1,36 @@
+# Parámetros generales del robot
+
+robot_name: "korea_robotcup"
+
+safety:
+  safe_distance_m: 1.2        # distancia normalizada persona-robot
+  warn_distance_m: 2.0        # distancia para empezar a frenar
+  emergency_stop_timeout_s: 0.1
+
+base:
+  max_linear_speed_mps: 0.4   # m/s
+  max_angular_speed_radps: 1.0
+  explore_linear_speed_mps: 0.2
+  explore_angular_speed_radps: 0.6
+
+  # Ganancias simplificadas para control (luego puedes ajustarlas)
+  goto_kp_linear: 0.8
+  goto_kp_angular: 1.2
+
+arms:
+  salute_repetitions: 3
+  salute_up_angle_deg: 90
+  salute_down_angle_deg: 30
+
+uart:
+  port: "/dev/serial0"
+  baudrate: 115200
+  timeout_s: 1.0
+
+audio:
+  tts_rate: 160
+  tts_volume: 1.0
+
+slam:
+  map_frame: "map"
+  robot_frame: "base_link"

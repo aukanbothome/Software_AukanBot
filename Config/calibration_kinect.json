@@ -1,0 +1,23 @@
+{
+  "camera_model": "kinect_v1",
+  "resolution": {
+    "width": 640,
+    "height": 480
+  },
+  "intrinsics": {
+    "fx": 525.0,
+    "fy": 525.0,
+    "cx": 320.0,
+    "cy": 240.0
+  },
+  "distortion": {
+    "k1": 0.0,
+    "k2": 0.0,
+    "p1": 0.0,
+    "p2": 0.0,
+    "k3": 0.0
+  },
+  "depth_model": "kinect_v1_classic",
+  "depth_formula": "z = 0.1236 * tan(d / 2842.5 + 1.1863)",
+  "depth_trunc": 3.5
+}
