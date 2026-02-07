@@ -1,300 +1,249 @@
-#In Englsih It definitely needs improvement to make it more enjoyable.
+# Robot Decision Making System
 
-Robot Decision Making System
-A Finite State Machine–based Architecture for RoboCup Challenges
-Overview
+### A Finite State Machine–based Architecture for RoboCup Challenges
 
-This repository documents the Decision Making System used by the robot across multiple RoboCup-style challenges.
+---
 
-The decision-making logic is implemented using Finite State Machines (FSMs), where:
+## Overview
 
-Each challenge has its own state machine
+This repository documents the **Decision Making System** used by the robot across multiple RoboCup-style challenges.
 
-States represent robot behaviors
+The decision-making logic is implemented using **Finite State Machines (FSMs)**, where:
 
-Transitions are triggered by events
+- Each challenge has its own state machine  
+- States represent robot behaviors  
+- Transitions are triggered by events  
+- The FSM acts as the logical backbone of the robot  
+- All perception and action modules are coordinated through states  
 
-The FSM acts as the logical backbone of the robot
+The system is fully implemented in **Python** and integrates multiple subsystems such as navigation, perception, manipulation, and human–robot interaction.
 
-All perception and action modules are coordinated through states
+---
 
-The system is fully implemented in Python and integrates multiple subsystems such as navigation, perception, manipulation, and human–robot interaction.
+## Decision Making Architecture
 
-Decision Making Architecture
+- Event-driven FSM  
+- One FSM per challenge  
+- Modular and scalable  
+- Robust to errors and unexpected situations  
+- Designed for real-world human interaction  
 
-Event-driven FSM
+---
 
-One FSM per challenge
+## Integrated Subsystems
 
-Modular and scalable
+- Mobility control  
+- Path planning  
+- Object detection and recognition  
+- Pose estimation  
+- Speech recognition  
+- Text-to-speech (TTS)  
+- Arm manipulation  
+- Mapping  
+- Face recognition  
+- Button-based interaction  
 
-Robust to errors and unexpected situations
+---
 
-Designed for real-world human interaction
+# RoboCup Challenges
 
-Integrated Subsystems
+---
 
-Mobility control
+## Challenge 1: Help Me Carry
 
-Path planning
-
-Object detection and recognition
-
-Pose estimation
-
-Speech recognition
-
-Text-to-speech (TTS)
-
-Arm manipulation
-
-Mapping
-
-Face recognition
-
-Button-based interaction
-
-RoboCup Challenges
-Challenge 1: Help Me Carry
-Description
+### Description
 
 The robot assists a person by following them, detecting a bag, picking it up, avoiding obstacles, and delivering it to a designated location before returning.
 
-State Flow Summary
+### State Flow Summary
 
-Waits for a person to approach
+- Waits for a person to approach  
+- Signals readiness to follow  
+- Follows the person  
+- Stops when the person stops  
+- Searches for a bag  
+- Navigates to the bag  
+- Picks up the bag  
+- Returns to the starting point  
+- Avoids obstacles if detected  
+- Delivers the bag  
+- Joins a return queue  
 
-Signals readiness to follow
+### Events (Examples)
 
-Follows the person
+- `b` → Person identified  
+- `f` → Person starts walking  
+- `k` → Bag detected  
+- `o` → Obstacle detected  
+- `q` → Bag delivered  
 
-Stops when the person stops
+### Key Functions Used
 
-Searches for a bag
+- Pose estimation  
+- Object detection  
+- Speech recognition  
+- Path planning  
+- Arm control  
 
-Navigates to the bag
+---
 
-Picks up the bag
+## Challenge 2: General Purpose Service Robot
 
-Returns to the starting point
-
-Avoids obstacles if detected
-
-Delivers the bag
-
-Joins a return queue
-
-Events (Examples)
-
-b → Person identified
-
-f → Person starts walking
-
-k → Bag detected
-
-o → Obstacle detected
-
-q → Bag delivered
-
-Key Functions Used
-
-Pose estimation
-
-Object detection
-
-Speech recognition
-
-Path planning
-
-Arm control
-
-Challenge 2: General Purpose Service Robot
-Description
+### Description
 
 The robot waits for spoken instructions, executes commands, navigates to instruction points, and safely handles obstacles during execution.
 
-Behavior Summary
+### Behavior Summary
 
-Idle waiting
+- Idle waiting  
+- Receives voice commands  
+- Executes assigned tasks  
+- Reports task completion  
+- Handles navigation obstacles  
 
-Receives voice commands
+### Key Events
 
-Executes assigned tasks
+- `b` → Command given  
+- `e` → Instruction point reached  
+- `f` → Obstacle detected  
+- `g` → Obstacle avoided  
 
-Reports task completion
+---
 
-Handles navigation obstacles
+## Challenge 3: Receptionist
 
-Key Events
-
-b → Command given
-
-e → Instruction point reached
-
-f → Obstacle detected
-
-g → Obstacle avoided
-
-Challenge 3: Receptionist
-Description
+### Description
 
 The robot acts as a receptionist, greeting guests, asking questions, offering drinks, guiding them to seats, and introducing them to others.
 
-Behavior Summary
+### Behavior Summary
 
-Detects guest arrival
+- Detects guest arrival  
+- Conducts initial interaction  
+- Guides guest to drinks  
+- Identifies drink choice  
+- Escorts guest to living room  
+- Assigns a seat  
+- Introduces guests  
+- Handles lost guests and obstacles  
 
-Conducts initial interaction
+### Key Events
 
-Guides guest to drinks
+- `b` → Guest detected  
+- `f` → Drink identified  
+- `k` → Guest lost  
+- `n` → Obstacle detected  
 
-Identifies drink choice
+---
 
-Escorts guest to living room
+## Challenge 4: Storing Groceries
 
-Assigns a seat
-
-Introduces guests
-
-Handles lost guests and obstacles
-
-Key Events
-
-b → Guest detected
-
-f → Drink identified
-
-k → Guest lost
-
-n → Obstacle detected
-
-Challenge 4: Storing Groceries
-Description
+### Description
 
 The robot organizes groceries by detecting objects on a table, classifying them, transporting them to storage, and performing special actions such as pouring cereal.
 
-Behavior Summary
+### Behavior Summary
 
-Navigate to table
+- Navigate to table  
+- Detect and classify objects  
+- Transport items to storage  
+- Store items correctly  
+- Handle obstacles  
+- Finish task and report completion  
 
-Detect and classify objects
+---
 
-Transport items to storage
+## Challenge 5: Clean the Table
 
-Store items correctly
-
-Handle obstacles
-
-Finish task and report completion
-
-Challenge 5: Clean the Table
-Description
+### Description
 
 The robot cleans a table by identifying, picking up, classifying, and disposing or storing objects while handling errors and obstacles.
 
-Behavior Summary
+### Behavior Summary
 
-Go to the table
+- Go to the table  
+- Analyze table contents  
+- Classify objects  
+- Pick and drop objects  
+- Verify table status  
+- Finish when table is empty  
 
-Analyze table contents
+### Key Events
 
-Classify objects
+- `c` → Table reached  
+- `f` → Object picked  
+- `j` → Table empty  
+- `k` → Obstacle detected  
 
-Pick and drop objects
+---
 
-Verify table status
+## Challenge 6: Enhanced General Purpose Service Robot
 
-Finish when table is empty
-
-Key Events
-
-c → Table reached
-
-f → Object picked
-
-j → Table empty
-
-k → Obstacle detected
-
-Challenge 6: Enhanced General Purpose Service Robot
-Description
+### Description
 
 An autonomous service robot that scans the arena, removes trash, organizes misplaced objects, assists people, and executes commands dynamically.
 
-Behavior Summary
+### Behavior Summary
 
-Continuous arena scanning
+- Continuous arena scanning  
+- Trash detection and disposal  
+- Object relocation  
+- Human assistance  
+- Command understanding and execution  
+- Obstacle handling  
 
-Trash detection and disposal
+---
 
-Object relocation
+## Challenge 7: Restaurant
 
-Human assistance
-
-Command understanding and execution
-
-Obstacle handling
-
-Challenge 7: Restaurant
-Description
+### Description
 
 The robot works as a waiter, managing customer interactions, taking orders, delivering food, and requesting human assistance when needed.
 
-Behavior Summary
+### Behavior Summary
 
-Monitor customer queue
+- Monitor customer queue  
+- Navigate to customer  
+- Take and confirm orders  
+- Go to kitchen  
+- Deliver orders  
+- Handle delivery errors and obstacles  
 
-Navigate to customer
+---
 
-Take and confirm orders
+## Challenge 8: Give Me a Hand
 
-Go to kitchen
-
-Deliver orders
-
-Handle delivery errors and obstacles
-
-Challenge 8: Give Me a Hand
-Description
+### Description
 
 The robot assists a human operator by receiving objects, interpreting instructions, confirming actions, navigating to destinations, and returning.
 
-Behavior Summary
+### Behavior Summary
 
-Navigate to operator
+- Navigate to operator  
+- Receive object  
+- Interpret command  
+- Request confirmation if needed  
+- Navigate to target  
+- Place object  
+- Return to operator  
+- Handle obstacles and errors  
 
-Receive object
+---
 
-Interpret command
+## Implementation Notes
 
-Request confirmation if needed
+- All FSMs are implemented in Python  
+- Each state corresponds to a robot behavior  
+- Transitions are strictly event-driven  
+- Designed for robustness under real-world uncertainty  
+- Easily extendable to new challenges  
 
-Navigate to target
+---
 
-Place object
-
-Return to operator
-
-Handle obstacles and errors
-
-Implementation Notes
-
-All FSMs are implemented in Python
-
-Each state corresponds to a robot behavior
-
-Transitions are strictly event-driven
-
-Designed for robustness under real-world uncertainty
-
-Easily extendable to new challenges
-
-Conclusion
+## Conclusion
 
 This decision-making framework provides a clear, modular, and robust architecture for autonomous robots operating in dynamic environments, ensuring reliable behavior across multiple service-oriented RoboCup challenges.
-#En Español
 
-Robot Decision Making System
 
 Este repositorio documenta el sistema de toma de decisiones del robot, diseñado para los distintos desafíos de RoboCup.
 El sistema está basado en máquinas de estados finitos (FSM), donde cada reto posee su propia lógica de decisión, eventos y transiciones.
