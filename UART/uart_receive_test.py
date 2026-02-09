@@ -1,7 +1,7 @@
 """
 uart_receive_test.py
-Lee continuamente del puerto UART y muestra todo lo que envía el ESP32.
-Útil para depuración del protocolo.
+Continuously reads data from the UART port and displays messages sent by the ESP32.
+Useful for protocol debugging.
 """
 
 import serial
@@ -32,3 +32,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
