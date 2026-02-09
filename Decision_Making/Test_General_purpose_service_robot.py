@@ -1,3 +1,4 @@
+#--------------------------------------------------[ En Español ]--------------------------------------------------
 
 # MÁQUINA DE ESTADOS FINITOS DEL ROBOT PRUEBA2
 
@@ -154,7 +155,7 @@ def ejecutar_fsm():
 if __name__ == "__main__":
     ejecutar_fsm()
 
-#In English
+#--------------------------------------------------[ In English ]--------------------------------------------------
 
 # FINITE STATE MACHINE FOR THE ROBOT TEST2
 
