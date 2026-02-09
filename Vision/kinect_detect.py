@@ -3,11 +3,11 @@ import freenect
 import numpy as np
 import time
 
-# Rutas a los archivos del modelo (ajusta si están en otra carpeta)
+# Paths to the model files (adjust if located in a different directory)
 PROTO_PATH = "MobileNetSSD_deploy.prototxt"
 MODEL_PATH = "MobileNetSSD_deploy.caffemodel"
 
-# Clases que reconoce el modelo
+# Classes recognized by the model
 CLASSES = [
     "background", "aeroplane", "bicycle", "bird", "boat",
     "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
@@ -92,3 +92,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
