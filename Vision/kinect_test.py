@@ -3,23 +3,23 @@ import freenect
 import numpy as np
 
 
-# ---------- Funciones para leer del Kinect ----------
+# ---------- Functions to read from the Kinect ----------
 
 def get_video():
     frame, _ = freenect.sync_get_video()
-    # El Kinect entrega RGB, OpenCV usa BGR
+    # Kinect provides RGB, while OpenCV uses BGR
     frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     return frame_bgr
 
 
 def get_depth():
     depth, _ = freenect.sync_get_depth()
-    # depth es un array de 11 bits, lo normalizamos para verlo
+    # depth is a 11-bit array, normalized for visualization purposes
     depth_uint8 = depth.astype(np.uint8)
     return depth_uint8
 
 
-# ---------- Programa principal ----------
+# ---------- Main Program ----------
 
 def main():
     print("Iniciando lectura del Kinect... (presiona 'q' para salir)")
@@ -39,3 +39,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
