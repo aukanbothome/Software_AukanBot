@@ -1,3 +1,5 @@
+# --------------------------------------------------[ En Español ]--------------------------------------------------
+
 # MÁQUINA DE ESTADOS – MANEJO DE OBJETOS
 # El robot puede almacenar objetos o
 # servir cereal, reaccionando a obstáculos.
@@ -175,7 +177,7 @@ while estado != "FIN":
 
 print("Secuencia finalizada. Robot listo para una nueva tarea.")
 
-#In English
+# --------------------------------------------------[ In English ]--------------------------------------------------
 
 # FINITE STATE MACHINE – OBJECT HANDLING
 # This FSM controls a robot that either
