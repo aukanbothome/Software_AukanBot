@@ -4,7 +4,7 @@ import numpy as np
 import open3d as o3d
 import time
 
-# Approximate Kinect v1 parameters
+# Estimated Kinect v1 parameters
 width, height = 640, 480
 fx, fy = 525.0, 525.0
 cx, cy = width / 2.0, height / 2.0
@@ -111,4 +111,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
