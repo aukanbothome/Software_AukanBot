@@ -4,7 +4,7 @@ import numpy as np
 import time
 import serial
 
-# ---------- CONFIGURACIÓN UART ----------
+# ---------- UART CONFIGURATION ----------
 ser = serial.Serial("/dev/serial0", 115200, timeout=1)
 time.sleep(2)
 
@@ -14,12 +14,12 @@ def enviar_uart(msg: str):
     print("[UART] Enviado:", msg)
 
 
-# ---------- DISTANCIA SEGURA ----------
+# ---------- SAFE DISTANCE ----------
 SAFE_DISTANCE_M = 1.2
 already_stopped = False
 already_greeted = False
 
-# ---------- MODELO DE DETECCIÓN ----------
+# ---------- DETECTION MODEL ----------
 PROTO_PATH = "MobileNetSSD_deploy.prototxt"
 MODEL_PATH = "MobileNetSSD_deploy.caffemodel"
 
@@ -104,7 +104,7 @@ def main():
                     if (min_person_dist is None) or (dist < min_person_dist):
                         min_person_dist = dist
 
-        # ---- LÓGICA DE SEGURIDAD ----
+        # ---- SAFETY LOGIC ----
         if min_person_dist is not None:
             print(f"Persona más cercana a: {min_person_dist:.2f} m")
 
@@ -130,3 +130,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
