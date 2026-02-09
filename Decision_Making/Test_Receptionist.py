@@ -1,3 +1,5 @@
+#--------------------------------------------------[ En Español ]--------------------------------------------------
+
 # MÁQUINA DE ESTADOS FINITOS – Prueba3
 # Recepción de Invitados
 # Cada estado representa una acción del robot
@@ -166,7 +168,7 @@ def ejecutar_fsm():
 if __name__ == "__main__":
     ejecutar_fsm()
 
-#In English
+#--------------------------------------------------[ In English ]--------------------------------------------------
 
 # FINITE STATE MACHINE TEST3
 # Guest Reception Task
