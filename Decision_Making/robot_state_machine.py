@@ -1,7 +1,7 @@
 """
 robot_state_machine.py
-Máquina de estados principal del robot RobotCup.
-Usa información de Vision + UART + Audio + Emergency Stop.
+Main state machine for the RobotCup's robot.
+Uses information from Vision + UART + Audio + Emergency Stop.
 """
 
 from enum import Enum, auto
@@ -13,7 +13,7 @@ from Audio.text_to_speech import hablar
 from Logic.emergency_stop import emergencia_activada
 
 # =====================
-#  ESTADOS DEL ROBOT
+#  ROBOT STATES
 # =====================
 class Estado(Enum):
     INIT = auto()
@@ -24,39 +24,40 @@ class Estado(Enum):
 
 
 # =====================
-#  PARÁMETROS GENERALES
+#  GLOBAL PARAMETERS
 # =====================
-SAFE_DISTANCE = 1.2     # distancia mínima segura
-LOST_TIMEOUT = 2        # segundos sin ver persona = perdida
+SAFE_DISTANCE = 1.2     # minimum safe distance
+LOST_TIMEOUT = 2        # timeout (seconds) before the user is considered lost
 
 
 # =====================
-#  FUNCIONES DE VISIÓN
+#  VISION FUNCTIONING
 # =====================
 
 def obtener_pose_robot():
     """
-    Devuelve (Xr, Zr) en metros.
-    Esta función debe conectarse a slam_person_map.py.
-    Por ahora devolvemos un ejemplo fijo.
+    Returns (Xr, Zr) in meters.
+    This function must connect to slam_person_map.py.
+    For now, it returns a static example.
     """
-    # TODO conectar a cam_pose del SLAM
+    # connect ALL to cam_pose from SLAM
     return 0.0, 0.0
 
 
 def obtener_persona_en_mapa():
     """
-    Debe devolver:
-      - None si no hay persona
-      - o (Xp, Zp, dist)
-    donde dist es la distancia real entre persona y robot.
+    Returns:
+      - None if no person is detected
+      - or (Xp, Zp, dist)
+      
+    Where dist is the actual distance between the person and the robot.
     """
-    # TODO conectar a slam_person_map.py
+    # connect ALL to slam_person_map.py
     return None
 
 
 # =====================
-#  MÁQUINA DE ESTADOS
+#  STATE MACHINE
 # =====================
 
 def main():
@@ -70,11 +71,11 @@ def main():
 
     while True:
 
-        # --- DETECCIÓN DE EMERGENCIA ---
+        # --- EMERGENCY DETECTION ---
         if emergencia_activada():
             estado = Estado.EMERGENCIA
 
-        # --- ACTUALIZAR PERCEPCIÓN ---
+        # --- UPDATE USER PERCEPTION ---
         Xr, Zr = obtener_pose_robot()
         persona = obtener_persona_en_mapa()
         ahora = time.time()
@@ -85,7 +86,7 @@ def main():
         else:
             dist = None
 
-        # --- PROCESAR FSM ---
+        # --- FSM PROCESSING ---
         if estado == Estado.INIT:
             print("[FSM] INIT")
             uart.send("STOP_BASE")
@@ -98,7 +99,7 @@ def main():
             uart.send("BASE_EXPLORAR")
 
             if persona is not None:
-                # Calcular objetivo seguro
+                # Safe target calculations
                 vx = Xp - Xr
                 vz = Zp - Zr
                 norm = np.sqrt(vx*vx + vz*vz) + 1e-6
@@ -137,7 +138,7 @@ def main():
             uart.send("SALUDAR")
             hablar("Hola. Mantendré una distancia segura.")
 
-            # Volver a buscar si la persona se va
+            # Return to search if the person is no longer detected
             if persona is None and (ahora - ultima_vista) > LOST_TIMEOUT:
                 hablar("Persona perdida. Reanudando búsqueda.")
                 estado = Estado.BUSCANDO_PERSONA
@@ -148,10 +149,11 @@ def main():
             uart.send("STOP_BRAZOS")
             hablar("Parada de emergencia activada.")
             time.sleep(0.2)
-            continue  # no salir del bucle
+            continue  # Keep loop
 
         time.sleep(0.1)
 
 
 if __name__ == "__main__":
     main()
+
