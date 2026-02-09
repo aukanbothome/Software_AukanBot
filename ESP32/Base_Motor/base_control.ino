@@ -1,23 +1,23 @@
 // base_control.ino
-// ESP32 de la BASE: recibe comandos por UART2 y controla 2 motores DC
+// ESP32 BASE controller: receives commands via UART2 and controls two DC motors
 
 #include <HardwareSerial.h>
 
-HardwareSerial SerialUART(2);   // UART2 (RX=16, TX=17 por defecto)
+HardwareSerial SerialUART(2);   // UART2 (RX=16, TX=17 by default)
 
-// PINS DEL DRIVER DE MOTORES  (AJUSTA A TU CONEXIÓN)
-const int MOTOR_L1 = 5;   // PWM izquierda adelante
-const int MOTOR_L2 = 18;  // PWM izquierda atrás (opcional)
-const int MOTOR_R1 = 19;  // PWM derecha adelante
-const int MOTOR_R2 = 21;  // PWM derecha atrás (opcional)
+// MOTOR DRIVER PINS  (ADJUST TO YOUR WIRING)
+const int MOTOR_L1 = 5;   // Front left motor PWM
+const int MOTOR_L2 = 18;  // Rear left motor PWM (optional)
+const int MOTOR_R1 = 19;  // Front right motor PWM
+const int MOTOR_R2 = 21;  // Rear right motor PWM (optional)
 
-// Canales PWM del ESP32
+// ESP32 PWM CHANNELS
 const int CH_L = 0;
 const int CH_R = 1;
 
 String buffer = "";
 
-// ======================= FUNCIONES DE MOTOR =======================
+// ======================= MOTOR FUNCTIONS =======================
 
 void stopBase() {
   ledcWrite(CH_L, 0);
@@ -28,7 +28,7 @@ void stopBase() {
 }
 
 void baseExplorar() {
-  // Adelante lento
+  // Slow forward motion
   ledcWrite(CH_L, 120);
   ledcWrite(CH_R, 120);
   digitalWrite(MOTOR_L2, LOW);
@@ -37,11 +37,11 @@ void baseExplorar() {
 }
 
 void baseVel(float v, float w) {
-  // v = velocidad lineal (m/s aprox)
-  // w = velocidad angular (rad/s aprox)
-  // Mapeo simple a PWM: aquí luego ajustas a tu robot real
+  // v = linear velocity (approx. m/s)
+  // w = angular velocity (approx. rad/s)
+  // Simple PWM mapping: to be tuned for the real robot
 
-  int base_pwm = 150;                    // PWM base
+  int base_pwm = 150;                    // base PWM 
   int left  = base_pwm + (int)(v*100) - (int)(w*80);
   int right = base_pwm + (int)(v*100) + (int)(w*80);
 
@@ -60,7 +60,7 @@ void baseVel(float v, float w) {
 }
 
 
-// ======================= PROCESAR COMANDOS =======================
+// ======================= COMMAND PROCESSING =======================
 
 void procesarComando(String cmd) {
 
@@ -75,7 +75,7 @@ void procesarComando(String cmd) {
   }
 
   else if (cmd.startsWith("BASE_VEL")) {
-    // Ejemplo: BASE_VEL:0.20,0.50
+    // Example: BASE_VEL:0.20,0.50
     cmd.replace("BASE_VEL:", "");
     int coma = cmd.indexOf(',');
     if (coma > 0) {
@@ -86,7 +86,7 @@ void procesarComando(String cmd) {
   }
 
   else if (cmd.startsWith("BASE_GOTO")) {
-    // Por ahora solo confirmamos recepción
+    // For now reception confirmation
     Serial.println("OK:BASE_GOTO");
   }
 
@@ -112,7 +112,7 @@ void setup() {
   pinMode(MOTOR_R1, OUTPUT);
   pinMode(MOTOR_R2, OUTPUT);
 
-  // Configurar PWM ESP32 (frecuencia 15 kHz, 8 bits)
+  // PWM ESP32 configuration (frecuency 15 kHz, 8 bits)
   ledcSetup(CH_L, 15000, 8);
   ledcSetup(CH_R, 15000, 8);
   ledcAttachPin(MOTOR_L1, CH_L);
@@ -142,3 +142,4 @@ void loop() {
     }
   }
 }
+
