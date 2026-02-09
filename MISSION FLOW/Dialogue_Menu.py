@@ -1,3 +1,5 @@
+#--------------------------------------------------[ En Español ]--------------------------------------------------
+
 def Help_me_carry():
     """
     Prueba: Help Me Carry
@@ -225,7 +227,7 @@ def Give_Me_a_Hand():
     print("[Node_TTS] ¿Necesitas algo más?")
     print("✅ [LOG] Prueba completada: Give Me a Hand")
 
-#In English
+#--------------------------------------------------[ In English ]--------------------------------------------------
 
 def Help_me_carry():
     """
