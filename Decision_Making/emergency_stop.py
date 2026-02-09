@@ -1,7 +1,7 @@
 """
 emergency_stop.py
-Módulo que detecta si el robot debe entrar en modo de emergencia.
-Se integra con voice_commands.py y con un GPIO físico.
+Module that detects if the robot should enter in a emergency state.
+Integrated with voice_commands.py and a physical GPIO.
 """
 
 import time
@@ -15,12 +15,12 @@ except ImportError:
 from Audio.voice_commands import detectar_voz
 
 
-# CONFIGURACIÓN DEL PIN DEL BOTÓN DE EMERGENCIA
-EMERGENCY_PIN = 17   # Cambiar si usas otro pin GPIO
+# EMERGENCY BUTTON PIN CONFIGURATION
+EMERGENCY_PIN = 17   # Change if using a different GPIO pin
 
 
 def setup_gpio():
-    """Configura el pin físico para botón de emergencia (si existe GPIO)."""
+    """Configures the physical pin for the emergency button (if a GPIO is available)."""
     if not GPIO_AVAILABLE:
         print("[EMERGENCY] GPIO no disponible (ejecutando en PC o VM)")
         return
@@ -31,7 +31,7 @@ def setup_gpio():
 
 
 def boton_presionado():
-    """Devuelve True si el botón de emergencia está presionado."""
+    """Returns True if emergency button is pressed."""
     if not GPIO_AVAILABLE:
         return False
     return GPIO.input(EMERGENCY_PIN) == GPIO.LOW
@@ -39,16 +39,16 @@ def boton_presionado():
 
 def emergencia_activada():
     """
-    Devuelve True si:
-      - el usuario presiona el botón físico
-      - o si se reconoce el comando de voz EMERGENCY_STOP
+    Returns True if:
+      - the user presses the emergenxy button
+      - or if the voice command EMERGENCY_STOP is recognized
     """
-    # 1) Botón físico
+    # 1) Physycal button
     if boton_presionado():
         print("[EMERGENCY] BOTÓN físico activado")
         return True
 
-    # 2) Comando de voz
+    # 2) Voice command
     comando = detectar_voz()
     if comando == "EMERGENCY_STOP":
         print("[EMERGENCY] VOZ: emergencia activada")
@@ -57,7 +57,7 @@ def emergencia_activada():
     return False
 
 
-# Test independiente
+# Independent test
 if __name__ == "__main__":
     setup_gpio()
     print("Probando emergencia. Habla o presiona botón.")
@@ -65,3 +65,4 @@ if __name__ == "__main__":
         if emergencia_activada():
             print(">> EMERGENCIA DETECTADA <<")
         time.sleep(0.2)
+
