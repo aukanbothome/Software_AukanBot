@@ -1,14 +1,14 @@
-# Ajustes para el SLAM con Kinect y Open3D
+# Configuration for SLAM with Kinect and Open3D
 
 tsdf_volume:
-  voxel_length: 0.02        # tamaño de voxel en metros (2 cm)
-  sdf_trunc: 0.04           # truncamiento TSDF (4 cm)
+  voxel_length: 0.02        # Voxel size in meters (2 cm)
+  sdf_trunc: 0.04           # TSDF truncation distance (4 cm)
   color_type: "RGB8"
 
 depth:
   depth_scale: 1000.0       # 1000 mm = 1 m
-  depth_trunc_m: 3.5        # ignorar puntos más lejos que esto
-  min_valid_distance_m: 0.3
+  depth_trunc_m: 3.5        # Ignore points farther than this distance (meters)
+  min_valid_distance_m: 0.3 # Minimum valid depth distance (meters)
 
 odometry:
   use_hybrid_term: true
@@ -18,3 +18,4 @@ odometry:
 visualization:
   update_interval_s: 1.0
   show_rgb_window: true
+
