@@ -1,10 +1,10 @@
-# Parámetros generales del robot
+# Global robot parameters
 
 robot_name: "korea_robotcup"
 
 safety:
-  safe_distance_m: 1.2        # distancia normalizada persona-robot
-  warn_distance_m: 2.0        # distancia para empezar a frenar
+  safe_distance_m: 1.2        # normalized robot-person distance
+  warn_distance_m: 2.0        # distance at which the robot starts slowing down
   emergency_stop_timeout_s: 0.1
 
 base:
@@ -13,7 +13,7 @@ base:
   explore_linear_speed_mps: 0.2
   explore_angular_speed_radps: 0.6
 
-  # Ganancias simplificadas para control (luego puedes ajustarlas)
+  # Simplified control gains (can be adjusted later)
   goto_kp_linear: 0.8
   goto_kp_angular: 1.2
 
@@ -34,3 +34,4 @@ audio:
 slam:
   map_frame: "map"
   robot_frame: "base_link"
+
