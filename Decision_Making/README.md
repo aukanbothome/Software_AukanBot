@@ -1,4 +1,4 @@
-# Robot Decision Making System a
+# Robot Decision Making System
 
 ### A Finite State Machine–based Architecture for RoboCup Challenges
 
