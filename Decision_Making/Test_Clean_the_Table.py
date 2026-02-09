@@ -1,5 +1,6 @@
-# Máquina de estados para el reto 5: Restaurant
+#--------------------------------------------------[En Español]--------------------------------------------------
 
+# Máquina de estados para el reto 5: Restaurant
 def q1():
     print("Q1: Mantenerse quieto (remaining_idle)")
     while True:
@@ -125,7 +126,7 @@ def fsm():
             state.send(char)
         except StopIteration:
 
-#In English
+#--------------------------------------------------[ In English ]--------------------------------------------------
 
 # State machine for Challenge 5: Restaurant
 
