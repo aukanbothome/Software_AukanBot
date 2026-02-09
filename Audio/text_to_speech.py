@@ -2,17 +2,18 @@ import pyttsx3
 
 engine = pyttsx3.init()
 
-# Opciones de voz
-engine.setProperty("rate", 160)   # velocidad
-engine.setProperty("volume", 1.0)
+# Voice options
+engine.setProperty("rate", 160)   # speed
+engine.setProperty("volume", 1.0) # volume
 
 def hablar(texto):
-    """Convierte texto a voz en la Raspberry Pi."""
+    """Converts text to speech on the Raspberry Pi."""
     print("[VOZ] Robot dice:", texto)
     engine.say(texto)
     engine.runAndWait()
 
-# Para testeo directo
+# For direct testing
 if __name__ == "__main__":
     hablar("Hola, soy tu robot asistente.")
     hablar("Estoy listo para comenzar.")
+
