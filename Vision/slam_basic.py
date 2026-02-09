@@ -4,7 +4,7 @@ import numpy as np
 import open3d as o3d
 import time
 
-# Parámetros aproximados del Kinect v1
+# Approximate Kinect v1 parameters
 width, height = 640, 480
 fx, fy = 525.0, 525.0
 cx, cy = width / 2.0, height / 2.0
@@ -21,7 +21,7 @@ def get_rgb_depth():
     rgb = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
     depth_raw = depth_raw.astype(np.float32)
 
-    # modelo típico Kinect -> metros
+    # Typical Kinect model -> meters
     depth_m = 0.1236 * np.tan(depth_raw / 2842.5 + 1.1863)
 
     return rgb, depth_m
@@ -111,3 +111,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
